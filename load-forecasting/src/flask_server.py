@@ -79,6 +79,11 @@ def parse_optargs() -> argparse.Namespace:
 
 
 def create_app():
+    global mp
+    mounted_model_path = project_root.joinpath('models/global')
+    mounted_model_name = infer_mounted_model_name(mounted_model_path)
+    print(f'Loading model {mounted_model_name}...')
+    mp = ModelProvider(mounted_model_path.joinpath(mounted_model_name))
     return app
 
 if __name__ == '__main__':

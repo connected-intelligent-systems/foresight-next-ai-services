@@ -10,8 +10,12 @@ COPY ./requirements.txt ./requirements.txt
 RUN pip3 install -r ./requirements.txt
 RUN pip3 install gunicorn 
 
-COPY ./src ./app/src
-COPY ./models ./app/models
+COPY ./src /app/src
+COPY ./models /app/models
+
+RUN chown -R appuser:appuser /app
+
+USER appuser
 
 HEALTHCHECK --interval=5s --timeout=3s \
   CMD curl -f http://localhost:8000/ || exit 1
