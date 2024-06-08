@@ -1,7 +1,0 @@
-*.ipynb
-*.sh
-*.csv
-models
-preped_data
-scalers
-models_data.tar.xz
