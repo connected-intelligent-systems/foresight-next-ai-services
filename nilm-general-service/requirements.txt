@@ -1,0 +1,5 @@
+Flask==3.0.1
+pandas==2.2.0
+scikit-learn==1.4.0
+requests==2.25.1
+

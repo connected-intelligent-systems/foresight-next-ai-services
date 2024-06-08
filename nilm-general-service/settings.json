@@ -1,0 +1,30 @@
+{
+    "CFM": {
+        "MAX": 3000,
+        "MIN": 0,
+        "SRC_PATH": "/data/raw/"
+    },
+    "DW": {
+        "MAX": 3000,
+        "MIN": 0,
+        "SRC_PATH": "/data/raw/spuelmaschine_dect.csv"
+    },
+    "KTL": {
+        "MAX": 3500,
+        "MIN": 0,
+        "SRC_PATH": "/data/raw/"
+    },
+    "WM": {
+        "MAX": 3000,
+        "MIN": 0,
+        "SRC_PATH": "/data/raw/waschmaschine_dect200.csv"
+    },
+    "general": {
+        "DESTINATION_FOLDER": "/data/hackathon",
+        "SAMPLING_RATE_N": 8,
+        "SMALL_FILL_WITH": 0,
+        "SMALL_GAP_SECONDS": 120,
+        "SMARTMETER_PATH": "/data/raw/smartmeter.csv",
+        "WINDOW_SIZE": 480
+    }
+}
