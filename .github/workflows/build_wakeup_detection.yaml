@@ -1,4 +1,4 @@
-name: Create and publish nilm general service
+name: Create and publish wakeup detection service
 
 on:
   push:
