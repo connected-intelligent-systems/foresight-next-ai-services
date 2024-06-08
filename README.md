@@ -10,5 +10,5 @@ See [Packages](https://github.com/orgs/connected-intelligent-systems/packages?re
 
 ## Authors
 
-Alexander Anisimov <alexander.anisimov@dfki.de>
+Alexander Anisimov <alexander.anisimov@dfki.de>  
 Muhammad Muaz <muhammad.muaz@dfki.de>
