@@ -82,4 +82,4 @@ The endpoint returns the disaggregation of the appliance in a similar format.
 
 ### Example Code
 
-Example code to access the container is present in the following notebook: `nilm/src/example_test.ipynb`.
+Example code to access the container is present in the following notebook: `nilm/example_test.ipynb`.
