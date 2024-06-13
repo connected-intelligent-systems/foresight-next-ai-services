@@ -16,7 +16,7 @@ or any other port the container is forwarding to.
 The response contains the model forecast.
 
 You can check whether everything works as intended by sending a test request.
-To this end, clone the code from GitLab, then `cd` to the [service directory](./load-forecasting)
+To this end, clone the code then `cd` to the service directory
 (the directory containing this README) and execute the following command:
 
 ```
