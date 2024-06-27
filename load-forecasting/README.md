@@ -1,6 +1,4 @@
-# Using the training and prediction service
-
-## Running in inference mode
+# Using the load forecasting service
 
 You can run the service via the provided image.
 The container is exposing port `8000`.
@@ -23,7 +21,7 @@ To this end, clone the code then `cd` to the service directory
 curl http://127.0.0.1:8000/forecast --request POST --header "Content-Type: application/json" --data @./sample_data/example_request.json
 ```
 
-### Expected input format
+## Expected input format
 
 JSON formatted like [example_request.json](./sample_data/example_request.json)
 
@@ -39,7 +37,7 @@ then calling `.to_json()` as is done in [model_provider.py](./src/model_provider
 under `if __name__ == '__main__'`
 
 
-### Output format
+## Output format
 
 JSON file formatted like [example_response.json](./sample_data/example_response.json)
 
