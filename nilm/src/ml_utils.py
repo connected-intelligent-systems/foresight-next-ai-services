@@ -23,6 +23,9 @@ def preprocess(df, settings):
 
     df['unix'] = df.index.astype('int64') // 10 ** 9
 
+    # filling remaining holes in the data with -1
+    df.fillna(-1, inplace=True)
+
     test = NILMDataset(x=df['power'],
                        y=df['power'],
                        status=df['unix'],
@@ -88,7 +91,6 @@ def _predict(_test_loader, settings):
     with torch.no_grad():
         for batch in _test_loader:
             x, _, ts = [batch[i] for i in range(3)]
-
             x = x.float()
             logits = _model(x)
 
