@@ -1,17 +1,14 @@
 from datetime import timedelta
 
 import numpy
-from pkg_resources import resource_filename
 from tensorflow.keras.models import load_model
 
 
 class Estimator:
 
     def __init__(self):
-        stage1_file = resource_filename('res', 'wu_stage1_cnn.h5')
-        stage2_file = resource_filename('res', 'wu_stage2_gru.h5')
-        self.stage1 = load_model(stage1_file, compile=False)
-        self.stage2 = load_model(stage2_file, compile=False)
+        self.stage1 = load_model('res/wu_stage1_cnn.h5', compile=False)
+        self.stage2 = load_model('res/wu_stage2_gru.h5', compile=False)
         self.stage1.compile(loss='categorical_crossentropy')
         self.stage2.compile(loss='mse')
 
