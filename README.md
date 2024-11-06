@@ -1,4 +1,4 @@
-# foresight-next ai services
+# ai services
 
 Contains the ai service for foresight-next:
 
