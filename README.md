@@ -1,6 +1,6 @@
 # ai services
 
-Contains the ai service for foresight-next:
+Contains the ai services for foresight-next:
 
 * [Load Forecasting](./load-forecasting/README.md)
 * [Nonintrusive Load Monitoring (NILM)](./nilm/README.md)
