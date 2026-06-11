@@ -1,4 +1,4 @@
-FROM docker.io/pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+FROM python:3.12-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -6,6 +6,7 @@ WORKDIR /app
 
 RUN useradd -m appuser
 
+RUN pip3 install torch --index-url https://download.pytorch.org/whl/cpu
 COPY ./requirements.txt ./requirements.txt
 RUN pip3 install -r ./requirements.txt
 RUN pip3 install gunicorn 

@@ -18,7 +18,7 @@ To this end, clone the code then `cd` to the service directory
 (the directory containing this README) and execute the following command:
 
 ```
-curl --request POST --header "Content-Type: application/json" --data @./sample_data/example_request.json --url-query n_samples=100 --url-query return_samples=False http://127.0.0.1:8000/forecast
+curl --request POST --header "Content-Type: application/json" --data @./sample_data/example_request.json http://127.0.0.1:8000/forecast
 ```
 
 ## Expected input format
@@ -29,22 +29,18 @@ JSON formatted like [example_request.json](./sample_data/example_request.json)
 - Time in unix timestamps (UTC, integer, milliseconds)
 - Power in Watt
 - Example json file in sample_data
-- 8 days of history
+- 168 time steps (i.e., 1 week) of history
 
-A simple way is to create `pandas.DataFrame` with unnamed datetime index with a frequency of `1h` and one column by the
-name of `power`,
-then calling `.to_json()` as is done in [model_provider.py](./src/model_provider.py)
-under `if __name__ == '__main__'`
-
-Additionally, the request can have two query parameters:
-- `n_samples`: `int`, defaults to `100`, determines the number of Monte-Carlo samples to compute the quantiles from
-- `return_samples`: `bool`, defaults to `True`, tells whether to return all samples or the quantiles only
+The previous version had two additional query parameters: `n_samples` and `return_samples`. 
+These don't need to be passed and are ignored, now.
 
 
 ## Output format
 
-JSON file formatted like [example_response.json](./sample_data/example_response.json)
+JSON file formatted like [example_response.json](./sample_data/example_response.json).
 
-- `samples`: `n` samples for every horizon from `1h` to `24h` sampled from the learned distribution, where `n` is determined by the `n_samples` query parameter.
-    This part is omitted if `return_samples` was set to `False`
-- `quantiles`: The quantiles `(0.1, 0.25, 0.5, 0.75, 0.9)`computed from the above samples
+## Changes to the previous versions:
+- The `samples` key is not returned anymore, only `quantiles`.
+- There is now a larger number of quantiles: `(0.025, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.975)`
+- The quantiles are now directly output by the model rather than being computed from samples. 
+  As a result, the predictions are significantly faster and more robust.
