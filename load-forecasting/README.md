@@ -4,7 +4,7 @@ You can run the service via the provided image.
 The container is exposing port `8000`.
 
 ```
-docker run -p 8000:8000 ghcr.io/connected-intelligent-systems/foresight-next-ai-services/load-forecasting:latest
+docker run -p 8000:8000 ghcr.io/connected-intelligent-systems/foresight-next-ai-services/load-forecasting:main
 ```
 
 In this example, it is forwarded to the same port of the local host.
