@@ -120,7 +120,10 @@ jobs:
           - service: wakeup-detection
             build_args: BASE_IMAGE=tensorflow/tensorflow:2.15.0-gpu
           - service: load-forecasting
-            build_args: TORCH_INDEX_URL=https://download.pytorch.org/whl/cu130
+            # CUDA 12.6 retains support for Volta GPUs such as the Tesla V100.
+            build_args: |
+              TORCH_INDEX_URL=https://download.pytorch.org/whl/cu126
+              TORCH_REQUIREMENT=torch==2.12.1+cu126
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

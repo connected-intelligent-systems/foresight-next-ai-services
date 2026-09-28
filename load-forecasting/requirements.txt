@@ -36,7 +36,8 @@ networkx==3.6.1
 nfoursid==1.0.2
 numba==0.65.1
 numpy==2.4.6
-nvidia-nccl-cu12==2.30.7
+# CUDA 12.6 PyTorch needs 2.29.3; keep the existing CPU selection at 2.30.7.
+nvidia-nccl-cu12>=2.29.3,<=2.30.7
 packaging==26.2
 pandas==2.2.2
 patsy==1.0.2
