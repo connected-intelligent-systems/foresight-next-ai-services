@@ -1,13 +1,16 @@
-ARG BASE_IMAGE=tensorflow/tensorflow:2.2.0-gpu
+ARG BASE_IMAGE=python:3.10-slim-bookworm
 FROM $BASE_IMAGE
 
 WORKDIR /app
 
 RUN useradd -m appuser
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl libgomp1 && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY /requirements.txt /app/requirements.txt
-RUN pip3 install -r ./requirements.txt
-RUN pip3 install gunicorn 
+RUN pip3 install --no-cache-dir -r ./requirements.txt gunicorn
 
 COPY ./src /app/src
 COPY ./res /app/res

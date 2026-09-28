@@ -6,10 +6,9 @@ WORKDIR /app
 
 RUN useradd -m appuser
 
-RUN pip3 install torch --index-url https://download.pytorch.org/whl/cpu
+ARG TORCH_INDEX_URL=https://download.pytorch.org/whl/cpu
 COPY ./requirements.txt ./requirements.txt
-RUN pip3 install -r ./requirements.txt
-RUN pip3 install gunicorn 
+RUN pip3 install --no-cache-dir -r ./requirements.txt gunicorn --extra-index-url ${TORCH_INDEX_URL}
 
 COPY ./src /app/src
 COPY ./models /app/models

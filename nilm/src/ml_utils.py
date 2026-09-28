@@ -83,6 +83,7 @@ def preprocess_old(df, settings):
 
 def _predict(_test_loader, settings):
     _model = settings['model']
+    device = next(_model.parameters()).device
     scaler_apl = settings['y_scaler']
 
     ts_list = []
@@ -91,11 +92,11 @@ def _predict(_test_loader, settings):
     with torch.no_grad():
         for batch in _test_loader:
             x, _, ts = [batch[i] for i in range(3)]
-            x = x.float()
+            x = x.float().to(device)
             logits = _model(x)
 
             ts_list.append(ts.numpy().squeeze())
-            logits_ys.append(logits.numpy().squeeze())
+            logits_ys.append(logits.cpu().numpy().squeeze())
 
     ts_list = np.concatenate(ts_list)
     y_pred = np.concatenate(logits_ys)

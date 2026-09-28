@@ -4,6 +4,7 @@ from pathlib import Path
 import darts as dts
 import numpy as np
 import pandas as pd
+import torch
 from darts.models import TFTModel
 from darts.utils.timeseries_generation import datetime_attribute_timeseries
 from sklearn.preprocessing import MinMaxScaler
@@ -21,6 +22,7 @@ class ModelWrapper:
     CHECKPOINT_NAME = "best-epoch=3-val_loss=0.12.ckpt"
 
     def __init__(self):
+        accelerator = "gpu" if torch.cuda.is_available() else "cpu"
 
         self.model = TFTModel.load(
             str(
@@ -32,7 +34,7 @@ class ModelWrapper:
                 )
             ),
             map_location="cpu",
-            pl_trainer_kwargs={"accelerator": "gpu"},
+            pl_trainer_kwargs={"accelerator": accelerator, "devices": 1},
         )
         wd = str(Path(project_root, "models"))
         self.model.work_dir = wd
@@ -42,7 +44,8 @@ class ModelWrapper:
             file_name=ModelWrapper.CHECKPOINT_NAME,
             map_location="cpu",
         )
-        self.model.to_cpu()
+        if accelerator == "cpu":
+            self.model.to_cpu()
 
     def encode_calendar(self, idx: pd.DatetimeIndex, add_length: int = 0):
         """

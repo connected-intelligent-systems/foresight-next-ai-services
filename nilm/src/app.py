@@ -62,6 +62,7 @@ def init():
 
     model = NILMTKModel(window_size=WINDOW_SIZE, drop_out=0.1)
     model.load_state_dict(model_dict)
+    model.to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
     global_dict['SAMPLING_RATE'] = SAMPLING_RATE
     global_dict['SMALL_GAP_LIMIT'] = SMALL_GAP_LIMIT
     global_dict['SMALL_FILL_WITH'] = SMALL_FILL_WITH
