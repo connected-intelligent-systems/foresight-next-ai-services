@@ -10,7 +10,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY /requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir -r ./requirements.txt gunicorn
+# The GPU base includes a distutils-installed blinker that pip cannot uninstall.
+RUN pip3 install --no-cache-dir --ignore-installed blinker==1.9.0 && \
+    pip3 install --no-cache-dir -r ./requirements.txt gunicorn
 
 COPY ./src /app/src
 COPY ./res /app/res
